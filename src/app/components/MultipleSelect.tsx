@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import Select, { components } from 'react-select';
+import Select, { MultiValue, StylesConfig, CSSObjectWithLabel } from 'react-select';
 
 const CustomDropdownIndicator = () => {
     return null; 
@@ -14,37 +14,38 @@ interface Option {
 
 interface MyMultipleSelectProps {
     options: Option[];
+    placeholder?: string;
 }
 
 const MyMultipleSelect: React.FC<MyMultipleSelectProps> = ({ options, placeholder }) => {
     const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
 
-    const handleChange = (selected: Option[]) => {
-        setSelectedOptions(selected);
+    const handleChange = (newValue: MultiValue<Option>) => {
+        setSelectedOptions(newValue as Option[]);
     };
 
-    const customStyles = {
-        control: (provided: any) => ({
+    const customStyles: StylesConfig<Option, true> = {
+        control: (provided: CSSObjectWithLabel) => ({
             ...provided,
-            border: '1px solid #d1d5db', 
+            border: '1px solid #d1d5db',
             boxShadow: 'none',
             '&:hover': {
-                border: '1px solid #a1a1aa', 
+                border: '1px solid #a1a1aa',
             },
             borderRadius: "8px"
         }),
-        multiValue: (provided: any) => ({
-            ...provided,
-            backgroundColor: '#e5e7eb', 
+        multiValue: (base: CSSObjectWithLabel) => ({
+            ...base,
+            backgroundColor: '#e5e7eb',
         }),
-        placeholder: (provided: any) => ({
+        placeholder: (provided: CSSObjectWithLabel) => ({
             ...provided,
             color: '#6b7280',
-            textAlign: 'left', 
+            textAlign: 'left',
         }),
-        singleValue: (provided: any) => ({
+        singleValue: (provided: CSSObjectWithLabel) => ({
             ...provided,
-            textAlign: 'left', 
+            textAlign: 'left',
         }),
     };
 
