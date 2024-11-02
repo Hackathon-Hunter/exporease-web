@@ -11,9 +11,7 @@ import StepForth from "./partial/Step4"
 
 const Setup: React.FC = () => {
     const [currentStep, setCurrentStep] = useState(0);
-    const [file, setFile] = useState<File | null>(null);
     const [isLoading, setIsLoading] = useState(false);
-    const [uploadProgress, setUploadProgress] = useState(0);
     const steps = [
         {
             name: "Informasi usaha",

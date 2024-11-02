@@ -9,8 +9,8 @@ const Step3: React.FC = () => {
     const [file, setFile] = useState<File | null>(null);
     const [uploadProgress, setUploadProgress] = useState(0);
 
-    const handleFileChange = (event) => {
-        const selectedFile = event.target.files[0];
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const selectedFile = event.target.files?.[0];
         if (selectedFile && selectedFile.type === 'image/png') {
             setFile(selectedFile);
             uploadFile(selectedFile);
@@ -19,7 +19,7 @@ const Step3: React.FC = () => {
         }
     };
 
-    const uploadFile = (file) => {
+    const uploadFile = (file: File) => {
         const formData = new FormData();
         formData.append('file', file);
 
