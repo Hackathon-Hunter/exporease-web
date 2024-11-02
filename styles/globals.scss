@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: white;
+}
+
+.btn-primary {
+  display: flex;
+  padding: 10px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  border-radius: 8px;
+  background: var(--Success-600, #079455);
+  box-shadow: 0px 0px 0px 1px rgba(10, 13, 18, 0.18) inset,
+    0px -2px 0px 0px rgba(10, 13, 18, 0.05) inset,
+    0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  color: white;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.btn-secondary {
+  display: flex;
+  padding: 10px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  border-radius: 8px;
+  border: 1px solid var(--Gray-300, #d5d7da);
+  background: var(--Base-White, #fff);
+  box-shadow: 0px 0px 0px 1px rgba(10, 13, 18, 0.18) inset,
+    0px -2px 0px 0px rgba(10, 13, 18, 0.05) inset,
+    0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  color: var(--Gray-700, #414651);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+}
