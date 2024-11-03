@@ -4,10 +4,17 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { Input } from '@nextui-org/react';
 import { uploadProductPhoto } from '../handler';
+import useApi from '@/hook/useApi.hook';
+import { FormikProps } from 'formik';
+import { SetupInput } from '../page.types';
 
-const Step3: React.FC = () => {
+type Props = {
+  formik: FormikProps<SetupInput>;
+};
+
+
+const Step3: React.FC<Props> = ({formik}: Props) => {
   const [file, setFile] = useState<File | null>(null);
-  const [uploadProgress, setUploadProgress] = useState(0);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0];
@@ -18,7 +25,6 @@ const Step3: React.FC = () => {
         selectedFile.type === 'image/jpeg')
     ) {
       setFile(selectedFile);
-      uploadFile(selectedFile);
     } else {
       alert('Please upload a valid image file.');
     }
@@ -34,7 +40,6 @@ const Step3: React.FC = () => {
         selectedFile.type === 'image/jpeg')
     ) {
       setFile(selectedFile);
-      uploadFile(selectedFile);
     } else {
       alert('Please upload a valid image file.');
     }
@@ -42,12 +47,6 @@ const Step3: React.FC = () => {
 
   const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
-  };
-
-  const uploadFile = (file: File) => {
-    const { data, error, loading, progress } = uploadProductPhoto(file);
-    console.log(progress);
-    
   };
 
   return (
@@ -70,6 +69,9 @@ const Step3: React.FC = () => {
             className="w-full"
             variant="bordered"
             placeholder="Masukkan nama produk usaha anda"
+            value={formik.values.productName}
+            onChange={formik.handleChange}
+            name='productName'
           />
         </div>
 
@@ -87,7 +89,7 @@ const Step3: React.FC = () => {
               onChange={handleFileChange}
               className="hidden"
             />
-            <p className="flex flex-col gap-3 justify-center items-center text-gray-600 text-sm sm:text-base">
+            <div className="flex flex-col gap-3 justify-center items-center text-gray-600 text-sm sm:text-base">
               <div className="bg-white p-3 rounded-lg shadow w-fit">
                 {/* SVG Icon */}
               </div>
@@ -96,7 +98,7 @@ const Step3: React.FC = () => {
               </span>
               <br />
               SVG, PNG atau JPG (max. 10 MB)
-            </p>
+            </div>
           </div>
           {file && (
             <div className="flex gap-3 mt-4 p-4 border border-gray-300 rounded-lg">
@@ -113,15 +115,6 @@ const Step3: React.FC = () => {
               <div className="flex flex-col gap-2 w-full">
                 <div className="flex justify-between">
                   <p className="font-semibold">{file.name}</p>
-                  <span className="text-[#079455] font-semibold">
-                    {uploadProgress.toFixed(0)}%
-                  </span>
-                </div>
-                <div className="relative h-2 bg-gray-200 rounded-full overflow-hidden">
-                  <div
-                    className="absolute h-full bg-[#079455]"
-                    style={{ width: `${uploadProgress}%` }}
-                  ></div>
                 </div>
               </div>
             </div>
