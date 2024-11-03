@@ -1,0 +1,14 @@
+"use client"
+
+import { div } from 'framer-motion/client';
+import React from 'react';
+
+const LandingPage: React.FC = () => {
+    return (
+        <div>
+            landing page
+        </div>
+    )
+}
+
+export default LandingPage;
