@@ -2,15 +2,17 @@
 
 import React from 'react';
 
-import MultipleSelect from '@/app/components/MultipleSelect';
+import MultipleSelect from '@/components/MultipleSelect';
 import { Input, RadioGroup, Radio, Textarea } from '@nextui-org/react';
+import { TagInput } from '@/components/TagInput';
+import useTagInput from '@/hook/useTag.hook';
 
 const Step1: React.FC = () => {
-  const options = [
-    { value: 'usaha1', label: 'Usaha 1' },
-    { value: 'usaha2', label: 'Usaha 2' },
-    { value: 'usaha3', label: 'Usaha 3' },
-  ];
+  const {
+    tags: keywordTag,
+    handleAddTag: handleAddKeywordTag,
+    handleRemoveTag: handleRemoveKeywordTag
+  } = useTagInput({ maxTags: 5 });
 
   return (
     <div className="flex flex-col gap-8 w-full max-w-lg md:w-[512px] justify-center items-center p-4 md:p-0">
@@ -99,9 +101,12 @@ const Step1: React.FC = () => {
 
         <div className="flex flex-col justify-start">
           <label className="text-start mb-2">Kata kunci usaha</label>
-          <MultipleSelect
-            options={options}
-            placeholder="cth: Teh, Buah, Tumbuhan, Arang"
+          <TagInput
+            addTag={handleAddKeywordTag}
+            removeTag={handleRemoveKeywordTag}
+            tags={keywordTag}
+            maxTags={5}
+            placeholder='cth: Teh, Buah, Tumbuhan, Arang'
           />
         </div>
 

@@ -1,8 +1,11 @@
-import type { AxiosError } from 'axios';
+import type { AxiosError, AxiosRequestConfig } from 'axios';
 
 export type Param = {
   url: string;
-  options?: object;
+  options?: {
+    data: any,
+  };
+  method?: 'GET' | 'POST';
 };
 
 export type UseApiReturn<T> = {

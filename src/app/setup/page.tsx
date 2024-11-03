@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 import Image from "next/image";
 
-import Stepper from "@/app/components/Stepper";
+import Stepper from "@/components/Stepper";
 
 import StepOne from "./partial/Step1";
 import StepTwo from "./partial/Step2";

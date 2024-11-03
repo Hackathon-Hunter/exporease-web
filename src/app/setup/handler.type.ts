@@ -1,5 +1,5 @@
 type Option = {
   value: string;
-  label: string;
+  option: string;
 };
 export type CountryOptionData = Option[];
