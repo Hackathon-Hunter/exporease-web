@@ -3,7 +3,7 @@ import businessSetupReducer from './businessSetup.store';
 
 export const store = configureStore({
   reducer: {
-    businessSetup: businessSetupReducer
+    businessSetup: businessSetupReducer,
   }
 });
 

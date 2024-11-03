@@ -5,8 +5,15 @@ import Image from 'next/image';
 import { Input } from '@nextui-org/react';
 import { uploadProductPhoto } from '../handler';
 import useApi from '@/hook/useApi.hook';
+import { FormikProps } from 'formik';
+import { SetupInput } from '../page.types';
 
-const Step3: React.FC = () => {
+type Props = {
+  formik: FormikProps<SetupInput>;
+};
+
+
+const Step3: React.FC<Props> = ({formik}: Props) => {
   const [file, setFile] = useState<File | null>(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,6 +69,9 @@ const Step3: React.FC = () => {
             className="w-full"
             variant="bordered"
             placeholder="Masukkan nama produk usaha anda"
+            value={formik.values.productName}
+            onChange={formik.handleChange}
+            name='productName'
           />
         </div>
 

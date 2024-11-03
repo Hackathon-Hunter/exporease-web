@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type BusinessSetupState = {
+export type BusinessSetupState = {
   email: string;
   name: string;
   password: string;
@@ -11,7 +11,7 @@ type BusinessSetupState = {
   productFileLocal: File[];
 };
 
-type Business = {
+export type Business = {
   name: string;
   type: 'product' | 'service';
   description: string;
@@ -25,19 +25,19 @@ type Business = {
   customerTargets: string[];
 };
 
-type Product = {
+export type Product = {
   name: string;
   productAssets: string[];
 };
 
-type ExportCountry = {
+export type ExportCountry = {
   country: string;
   percentage: number;
   description: string;
   countryFlag: string;
 };
 
-type CustomExportCountry = {
+export type CustomExportCountry = {
   country: string;
 };
 
@@ -68,22 +68,17 @@ const initialState: BusinessSetupState = {
 };
 
 const businessSetupSlice = createSlice({
-  name: 'counter',
+  name: 'businessSetup',
   initialState,
   reducers: {
-    firstStep: (
+    setup: (
       state,
-      action: PayloadAction<
-        Pick<Business, 'name' | 'description' | 'type' | 'keywords' | 'website'>
-      >
+      action: PayloadAction<BusinessSetupState>
     ) => {
-      state.business.name = action.payload.name;
-      state.business.type = action.payload.type;
-      state.business.keywords = action.payload.keywords;
-      state.business.website = action.payload.website;
+      state = { ...state, ...action.payload };
     }
   }
 });
 
-export const { firstStep } = businessSetupSlice.actions;
+export const { setup } = businessSetupSlice.actions;
 export default businessSetupSlice.reducer;
