@@ -22,6 +22,6 @@ export const uploadProductPhoto = (file: File) => {
     },
     method: 'POST'
   });
-  
+
   return response;
 };

@@ -7,34 +7,24 @@ const useApi = <T>({
   url,
   options,
   method = 'GET'
-}: Param): UseApiReturn<T> & { progress: number } => {
+}: Param): UseApiReturn<T> => {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<AxiosError | null>(null);
-  const [progress, setProgress] = useState<number>(0);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      setProgress(0);
 
       try {
-        const axiosOptions = {
-          ...options,
-          onProgress: (percent: number, type: 'upload' | 'download') => {
-            setProgress(percent);
-          }
-        };
-
         let response;
         if (method === 'POST') {
           response = await axiosInstance.post<T>(
             url,
             options?.data,
-            axiosOptions
           );
         } else {
-          response = await axiosInstance.get<T>(url, axiosOptions);
+          response = await axiosInstance.get<T>(url);
         }
 
         setData(response.data);
@@ -48,7 +38,7 @@ const useApi = <T>({
     fetchData();
   }, [url, options, method]);
 
-  return { data, loading, error, progress };
+  return { data, loading, error };
 };
 
 export default useApi;
