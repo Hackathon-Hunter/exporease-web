@@ -1,3 +1,93 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "extends": [
+    "next/core-web-vitals",
+    "next/typescript",
+    "plugin:react-hooks/recommended"
+  ],
+  "plugins": [
+    "react",
+    "react-hooks",
+    "import"
+  ],
+  "parser": "@babel/eslint-parser",
+  "overrides": [
+    {
+      "files": ["**/*.test.{js,jsx}"],
+      "rules": {
+        "max-lines-per-function": "off"
+      }
+    }
+  ],
+  "rules": {
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "never"
+      }
+    ],
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal", "parent", "sibling"],
+        "pathGroups": [
+          {
+            "pattern": "react**",
+            "group": "builtin",
+            "position": "before"
+          },
+          {
+            "pattern": "@**/**",
+            "group": "internal",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ],
+    "padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "return"
+      }
+    ],
+    "global-require": "off",
+    "valid-jsdoc": "error",
+    "no-underscore-dangle": "off",
+    "object-curly-newline": [
+      "error",
+      { "minProperties": 4, "consistent": true }
+    ],
+    "object-curly-spacing": ["error", "always"],
+    "react/prop-types": "off",
+
+    // react specific
+    "react/jsx-filename-extension": ["error", { "extensions": [".jsx", "js"] }],
+
+    // react hooks specific
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+
+    // no shadow specific
+    "no-shadow": "off",
+
+    // reassign value current on ref params
+    "no-param-reassign": [
+      "error",
+      { "props": true, "ignorePropertyModificationsForRegex": ["Ref$"] }
+    ],
+
+    // Enforce consistent 2-space indentation
+    "indent": ["error", 2, { "SwitchCase": 1, "VariableDeclarator": 1 }]
+  }
 }
