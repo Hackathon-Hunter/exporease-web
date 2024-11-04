@@ -1,23 +1,31 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import Image from "next/image";
+import Image from 'next/image';
 
-import Stepper from "@/components/Stepper";
+import Stepper from '@/components/Stepper';
 
-import StepOne from "./partial/Step1";
-import StepTwo from "./partial/Step2";
-import StepThird from "./partial/Step3";
-import StepForth from "./partial/Step4";
+import StepOne from './partial/Step1';
+import StepTwo from './partial/Step2';
+import StepThird from './partial/Step3';
+import StepForth from './partial/Step4';
+import { useAppDispatch } from '@/hook/useAppDispatch.hook';
+import { useFormik } from 'formik';
+import { setup } from '@/store/businessSetup.store';
+import useTagInput from '@/hook/useTag.hook';
+import * as yup from 'yup';
+import { SetupInput } from './page.types';
 
 const Setup: React.FC = () => {
+  const dispatch = useAppDispatch();
+
   const [currentStep, setCurrentStep] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const steps = [
     {
-      name: "Informasi usaha",
-      description: "Informasi terkait usaha, tipe usaha, dan kata kunci usaha.",
+      name: 'Informasi usaha',
+      description: 'Informasi terkait usaha, tipe usaha, dan kata kunci usaha.',
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -34,11 +42,11 @@ const Setup: React.FC = () => {
             strokeLinejoin="round"
           />
         </svg>
-      ),
+      )
     },
     {
-      name: "Target ekspor",
-      description: "Tentukan target ekspor sesuai dengan keinginan anda.",
+      name: 'Target ekspor',
+      description: 'Tentukan target ekspor sesuai dengan keinginan anda.',
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -55,12 +63,12 @@ const Setup: React.FC = () => {
             strokeLinejoin="round"
           />
         </svg>
-      ),
+      )
     },
     {
-      name: "Foto produk",
+      name: 'Foto produk',
       description:
-        "Dokumentasi terkait produk atau jasa yang dapat dilihat pengguna",
+        'Dokumentasi terkait produk atau jasa yang dapat dilihat pengguna',
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -77,12 +85,12 @@ const Setup: React.FC = () => {
             strokeLinejoin="round"
           />
         </svg>
-      ),
+      )
     },
     {
-      name: "Hasil analisa",
+      name: 'Hasil analisa',
       description:
-        "Saran terbaik dari kami dan telah dioptimalisasikan dengan AI",
+        'Saran terbaik dari kami dan telah dioptimalisasikan dengan AI',
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -99,25 +107,54 @@ const Setup: React.FC = () => {
             strokeLinejoin="round"
           />
         </svg>
-      ),
-    },
+      )
+    }
   ];
-  const stepsForm = ["Step 1", "Step 2", "Step 3", "Loading..."];
+  const stepsForm = ['Step 1', 'Step 2', 'Step 3', 'Loading...'];
+
+  const {
+    tags: keywordTag,
+    handleAddTag: handleAddKeywordTag,
+    handleRemoveTag: handleRemoveKeywordTag
+  } = useTagInput({ maxTags: 5 });
+
+  const {
+    tags: targetTag,
+    handleAddTag: handleAddTargetTag,
+    handleRemoveTag: handleRemoveTargetTag
+  } = useTagInput({ maxTags: 5 });
+
+  const formik = useFormik<SetupInput>({
+    initialValues: {
+      name: '',
+      description: '',
+      countries: [],
+      expectationIncome: 0,
+      keywords: [],
+      peopleBehaviorTargets: [],
+      productAsset: undefined,
+      productName: '',
+      type: '',
+      website: ''
+    },
+    onSubmit: value => { },
+    validationSchema: yup.object({})
+  });
 
   const nextStep = () => {
     if (currentStep == 2) {
       setIsLoading(true);
       setTimeout(() => {
-        setCurrentStep((prev) => Math.min(prev + 1, stepsForm.length - 1));
+        setCurrentStep(prev => Math.min(prev + 1, stepsForm.length - 1));
         setIsLoading(false);
       }, 5000);
     } else {
-      setCurrentStep((prev) => Math.min(prev + 1, stepsForm.length - 1));
+      setCurrentStep(prev => Math.min(prev + 1, stepsForm.length - 1));
     }
   };
 
   const prevStep = () => {
-    setCurrentStep((prev) => Math.max(prev - 1, 0));
+    setCurrentStep(prev => Math.max(prev - 1, 0));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -151,11 +188,25 @@ const Setup: React.FC = () => {
         {(() => {
           switch (currentStep) {
             case 0:
-              return <StepOne />;
+              return (
+                <StepOne
+                  formik={formik}
+                  handleAddKeywordTag={handleAddKeywordTag}
+                  handleRemoveKeywordTag={handleRemoveKeywordTag}
+                  keywordTag={keywordTag}
+                />
+              );
             case 1:
-              return <StepTwo />;
+              return (
+                <StepTwo
+                  formik={formik}
+                  handleAddTargetTag={handleAddTargetTag}
+                  handleRemoveTargetTag={handleRemoveTargetTag}
+                  targetTag={targetTag}
+                />
+              );
             case 2:
-              return <StepThird />;
+              return <StepThird formik={formik} />;
             default:
               return <StepForth />;
           }
@@ -200,8 +251,8 @@ const Setup: React.FC = () => {
                 key={index}
                 className={`flex items-center justify-center w-3 h-3 mx-1 rounded-full cursor-pointer 
                             ${currentStep === index
-                    ? "bg-[#079455] text-white"
-                    : "bg-gray-200 text-gray-700"
+                    ? 'bg-[#079455] text-white'
+                    : 'bg-gray-200 text-gray-700'
                   }`}
               />
             ))}
