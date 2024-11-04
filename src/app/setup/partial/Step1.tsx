@@ -1,19 +1,26 @@
 'use client';
 
-import React from 'react';
+import React, { Dispatch, FormEvent, SetStateAction, useEffect } from 'react';
 
-import MultipleSelect from '@/components/MultipleSelect';
 import { Input, RadioGroup, Radio, Textarea } from '@nextui-org/react';
 import { TagInput } from '@/components/TagInput';
 import useTagInput from '@/hook/useTag.hook';
+import { FormikProps } from 'formik';
+import { SetupInput } from '../page.types';
 
-const Step1: React.FC = () => {
-  const {
-    tags: keywordTag,
-    handleAddTag: handleAddKeywordTag,
-    handleRemoveTag: handleRemoveKeywordTag
-  } = useTagInput({ maxTags: 5 });
+type Props = {
+  handleAddKeywordTag: (newTag: string) => void;
+  handleRemoveKeywordTag: (tag: string) => void;
+  keywordTag: string[];
+  formik: FormikProps<SetupInput>;
+};
 
+const Step1: React.FC<Props> = ({
+  formik,
+  handleAddKeywordTag,
+  handleRemoveKeywordTag,
+  keywordTag
+}: Props) => {
   return (
     <div className="flex flex-col gap-8 w-full max-w-lg md:w-[512px] justify-center items-center p-4 md:p-0">
       <div className="bg-white p-3 rounded-lg shadow w-fit">
@@ -46,21 +53,41 @@ const Step1: React.FC = () => {
         <div className="flex flex-col justify-start">
           <label className="text-start mb-2">Nama usaha</label>
           <Input
-            type="email"
+            type="text"
             className="w-full"
             variant="bordered"
+            name="name"
             placeholder="Masukkan nama usaha anda di sini"
+            value={formik.values.name}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
+          {formik.errors.name && (
+            <div className="text-danger text-start text-sm">
+              {formik.errors.name}
+            </div>
+          )}
         </div>
 
         <div className="flex flex-col justify-start">
           <label className="text-start mb-2">Tipe usaha</label>
-          <RadioGroup color="success">
+          <RadioGroup
+            color="success"
+            name="type"
+            value={formik.values.type}
+            onChange={e => formik.setFieldValue('type', e.target.value)}
+            onBlur={() => formik.setFieldTouched('type', true)}
+          >
             <div className="flex gap-2">
               <Radio value="product">Produk</Radio>
               <Radio value="service">Jasa</Radio>
             </div>
           </RadioGroup>
+          {formik.touched.type && formik.errors.type && (
+            <div className="text-danger text-start text-sm">
+              {formik.errors.type}
+            </div>
+          )}
         </div>
 
         <div className="flex flex-col justify-start">
@@ -96,7 +123,16 @@ const Step1: React.FC = () => {
             labelPlacement="outside"
             placeholder="Berikan deskripsi singkat tentang usaha anda"
             className="w-full"
+            name="description"
+            value={formik.values.description}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
+          {formik.touched.description && formik.errors.description && (
+            <div className="text-danger text-start text-sm">
+              {formik.errors.description}
+            </div>
+          )}
         </div>
 
         <div className="flex flex-col justify-start">
@@ -106,7 +142,7 @@ const Step1: React.FC = () => {
             removeTag={handleRemoveKeywordTag}
             tags={keywordTag}
             maxTags={5}
-            placeholder='cth: Teh, Buah, Tumbuhan, Arang'
+            placeholder="cth: Teh, Buah, Tumbuhan, Arang"
           />
         </div>
 
@@ -121,6 +157,9 @@ const Step1: React.FC = () => {
               className="border-2 border-l-0 rounded-r-lg px-4 py-2 w-full"
               type="text"
               placeholder="Write something here..."
+              value={formik.values.website}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             />
           </div>
           <small className="text-start text-gray-500">opsional</small>

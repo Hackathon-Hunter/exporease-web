@@ -3,19 +3,26 @@
 import React from 'react';
 
 import MultipleSelect from '@/components/MultipleSelect';
-import { Input, Select, SelectItem } from '@nextui-org/react';
+import { Select, SelectItem } from '@nextui-org/react';
 import { getCountries } from '../handler';
-import useTagInput from '@/hook/useTag.hook';
 import { TagInput } from '@/components/TagInput';
+import { SetupInput } from '../page.types';
+import { FormikProps } from 'formik';
 
-const Step2: React.FC = () => {
+type Props = {
+  handleAddTargetTag: (newTag: string) => void;
+  handleRemoveTargetTag: (tag: string) => void;
+  targetTag: string[];
+  formik: FormikProps<SetupInput>;
+};
+
+const Step2: React.FC<Props> = ({
+  formik,
+  handleAddTargetTag,
+  handleRemoveTargetTag,
+  targetTag
+}: Props) => {
   const countryData = getCountries();
-
-  const {
-    tags: targetTag,
-    handleAddTag: handleAddTargetTag,
-    handleRemoveTag: handleRemoveTargetTag
-  } = useTagInput({ maxTags: 5 });
 
   const incomeExpectation = [
     {
@@ -72,6 +79,9 @@ const Step2: React.FC = () => {
           <MultipleSelect
             options={countryData}
             placeholder="cth: Australia, Jepang, Amerika Serikat"
+            value={formik.values.countries}
+            onChange={formik.handleChange}
+            name='countries'
           />
         </div>
 
@@ -92,7 +102,13 @@ const Step2: React.FC = () => {
           <label className="text-start mb-2 text-sm sm:text-base">
             Ekspektasi pendapatan per bulan
           </label>
-          <Select placeholder="Masukkan ekspektasi pendapatan anda">
+          <Select
+            placeholder="Masukkan ekspektasi pendapatan anda"
+            value={formik.values.expectationIncome}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            name='expectationIncome'
+          >
             {incomeExpectation.map(item => (
               <SelectItem key={item.value}>{item.label}</SelectItem>
             ))}
