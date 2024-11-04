@@ -50,9 +50,7 @@ const Step3: React.FC<Props> = ({formik}: Props) => {
   };
 
   const uploadFile = (file: File) => {
-    const { data, error, loading, progress } = uploadProductPhoto(file);
-    console.log(progress);
-
+    const { data, error, loading } = uploadProductPhoto(file);
   };
 
   return (
