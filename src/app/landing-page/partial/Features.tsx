@@ -54,7 +54,7 @@ const Features: React.FC = () => {
                         width={768}
                         height={432}
                         className="object-cover w-full h-auto max-w-md md:max-w-none block md:hidden"
-                        src="/assets/illustrations/features-1-mobile.svg"
+                        src="/assets/illustrations/features-1-mobile.webp"
                         loading="lazy"
                     />
                     <Image
@@ -62,7 +62,7 @@ const Features: React.FC = () => {
                         width={768}
                         height={432}
                         className="object-cover w-full h-auto max-w-md md:max-w-none hidden md:block"
-                        src="/assets/illustrations/features-1.svg"
+                        src="/assets/illustrations/features-1.webp"
                         loading="lazy"
                     />
                 </div>
@@ -75,7 +75,7 @@ const Features: React.FC = () => {
                         width={768}
                         height={432}
                         className="object-cover w-full h-auto max-w-md md:max-w-none block md:hidden"
-                        src="/assets/illustrations/features-2-mobile.svg"
+                        src="/assets/illustrations/features-2-mobile.webp"
                         loading="lazy"
                     />
                     <Image
@@ -83,7 +83,7 @@ const Features: React.FC = () => {
                         width={768}
                         height={432}
                         className="object-cover w-full h-auto max-w-md md:max-w-none hidden md:block"
-                        src="/assets/illustrations/features-2.svg"
+                        src="/assets/illustrations/features-2.webp"
                         loading="lazy"
                     />
                 </div>
@@ -170,7 +170,7 @@ const Features: React.FC = () => {
                         width={768}
                         height={432}
                         className="object-cover w-full h-auto max-w-md md:max-w-none block md:hidden"
-                        src="/assets/illustrations/features-3-mobile.svg"
+                        src="/assets/illustrations/features-3-mobile.webp"
                         loading="lazy"
                     />
                     <Image
@@ -178,7 +178,7 @@ const Features: React.FC = () => {
                         width={768}
                         height={432}
                         className="object-cover w-full h-auto max-w-md md:max-w-none hidden md:block"
-                        src="/assets/illustrations/features-3.svg"
+                        src="/assets/illustrations/features-3.webp"
                         loading="lazy"
                     />
                 </div>
