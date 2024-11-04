@@ -40,7 +40,7 @@ const Hero: React.FC = () => {
                     width={768}
                     height={449}
                     className="object-cover w-full h-auto mx-auto md:mx-0"
-                    src="/assets/illustrations/hero.png"
+                    src="/assets/illustrations/hero.webp"
                     loading="lazy"
                 />
             </div>

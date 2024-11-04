@@ -2,7 +2,15 @@ import React from 'react';
 
 import Image from 'next/image';
 
+import CountryMatch from '@/components/CountryMatch';
+
 const Step4: React.FC = () => {
+  const countries = [
+    { countryName: 'Australia', matchPercentage: 98, imageUrl: '/assets/icons/AU.png' },
+    { countryName: 'Canada', matchPercentage: 95, imageUrl: '/assets/icons/AU.png' },
+    { countryName: 'Germany', matchPercentage: 92, imageUrl: '/assets/icons/AU.png' },
+    { countryName: 'Japan', matchPercentage: 90, imageUrl: '/assets/icons/AU.png' },
+  ];
 
   return (
     <div className="flex flex-col gap-[32px] max-w-[865px] justify-center items-center">
@@ -35,97 +43,15 @@ const Step4: React.FC = () => {
         <div className="flex flex-col gap-2 justify-start pb-[20px]">
           <span className="text-start font-semibold">Negara yang cocok untuk ekspor usaha anda</span>
           <div className="flex items-center gap-1 w-full mt-3">
-            <div className="flex gap-1">
-              <div>
-                <Image
-                  alt="Exporease"
-                  width={56}
-                  height={56}
-                  className="object-cover w-[25px] h-auto"
-                  src="/assets/icons/AU.png"
-                  loading="lazy"
+            <div className="flex gap-3">
+              {countries.slice(0, 4).map((country, index) => (
+                <CountryMatch
+                  key={index}
+                  countryName={country.countryName}
+                  matchPercentage={country.matchPercentage}
+                  imageUrl={country.imageUrl}
                 />
-              </div>
-              <div className="flex flex-col gap-2">
-                <div className="flex justify-between">
-                  <span className="font-semibold">Australia</span>
-                  <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                      <path d="M13.3333 4.99996V4.33329C13.3333 3.39987 13.3333 2.93316 13.1517 2.57664C12.9919 2.26304 12.7369 2.00807 12.4233 1.84828C12.0668 1.66663 11.6001 1.66663 10.6667 1.66663H9.33333C8.39991 1.66663 7.9332 1.66663 7.57668 1.84828C7.26308 2.00807 7.00811 2.26304 6.84832 2.57664C6.66667 2.93316 6.66667 3.39987 6.66667 4.33329V4.99996M8.33333 9.58329V13.75M11.6667 9.58329V13.75M2.5 4.99996H17.5M15.8333 4.99996V14.3333C15.8333 15.7334 15.8333 16.4335 15.5608 16.9683C15.3212 17.4387 14.9387 17.8211 14.4683 18.0608C13.9335 18.3333 13.2335 18.3333 11.8333 18.3333H8.16667C6.76654 18.3333 6.06647 18.3333 5.53169 18.0608C5.06129 17.8211 4.67883 17.4387 4.43915 16.9683C4.16667 16.4335 4.16667 15.7334 4.16667 14.3333V4.99996" stroke="#717680" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
-                </div>
-                <span className="text-[#079455] font-semibold">98% tingkat kecocokan</span>
-              </div>
-            </div>
-            <div className="flex gap-1">
-              <div>
-                <Image
-                  alt="Exporease"
-                  width={56}
-                  height={56}
-                  className="object-cover w-[25px] h-auto"
-                  src="/assets/icons/AU.png"
-                  loading="lazy"
-                />
-              </div>
-              <div className="flex flex-col gap-2">
-                <div className="flex justify-between">
-                  <span className="font-semibold">Australia</span>
-                  <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                      <path d="M13.3333 4.99996V4.33329C13.3333 3.39987 13.3333 2.93316 13.1517 2.57664C12.9919 2.26304 12.7369 2.00807 12.4233 1.84828C12.0668 1.66663 11.6001 1.66663 10.6667 1.66663H9.33333C8.39991 1.66663 7.9332 1.66663 7.57668 1.84828C7.26308 2.00807 7.00811 2.26304 6.84832 2.57664C6.66667 2.93316 6.66667 3.39987 6.66667 4.33329V4.99996M8.33333 9.58329V13.75M11.6667 9.58329V13.75M2.5 4.99996H17.5M15.8333 4.99996V14.3333C15.8333 15.7334 15.8333 16.4335 15.5608 16.9683C15.3212 17.4387 14.9387 17.8211 14.4683 18.0608C13.9335 18.3333 13.2335 18.3333 11.8333 18.3333H8.16667C6.76654 18.3333 6.06647 18.3333 5.53169 18.0608C5.06129 17.8211 4.67883 17.4387 4.43915 16.9683C4.16667 16.4335 4.16667 15.7334 4.16667 14.3333V4.99996" stroke="#717680" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
-                </div>
-                <span className="text-[#079455] font-semibold">98% tingkat kecocokan</span>
-              </div>
-            </div>
-            <div className="flex gap-1">
-              <div>
-                <Image
-                  alt="Exporease"
-                  width={56}
-                  height={56}
-                  className="object-cover w-[25px] h-auto"
-                  src="/assets/icons/AU.png"
-                  loading="lazy"
-                />
-              </div>
-              <div className="flex flex-col gap-2">
-                <div className="flex justify-between">
-                  <span className="font-semibold">Australia</span>
-                  <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                      <path d="M13.3333 4.99996V4.33329C13.3333 3.39987 13.3333 2.93316 13.1517 2.57664C12.9919 2.26304 12.7369 2.00807 12.4233 1.84828C12.0668 1.66663 11.6001 1.66663 10.6667 1.66663H9.33333C8.39991 1.66663 7.9332 1.66663 7.57668 1.84828C7.26308 2.00807 7.00811 2.26304 6.84832 2.57664C6.66667 2.93316 6.66667 3.39987 6.66667 4.33329V4.99996M8.33333 9.58329V13.75M11.6667 9.58329V13.75M2.5 4.99996H17.5M15.8333 4.99996V14.3333C15.8333 15.7334 15.8333 16.4335 15.5608 16.9683C15.3212 17.4387 14.9387 17.8211 14.4683 18.0608C13.9335 18.3333 13.2335 18.3333 11.8333 18.3333H8.16667C6.76654 18.3333 6.06647 18.3333 5.53169 18.0608C5.06129 17.8211 4.67883 17.4387 4.43915 16.9683C4.16667 16.4335 4.16667 15.7334 4.16667 14.3333V4.99996" stroke="#717680" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
-                </div>
-                <span className="text-[#079455] font-semibold">98% tingkat kecocokan</span>
-              </div>
-            </div>
-            <div className="flex gap-1">
-              <div>
-                <Image
-                  alt="Exporease"
-                  width={56}
-                  height={56}
-                  className="object-cover w-[25px] h-auto"
-                  src="/assets/icons/AU.png"
-                  loading="lazy"
-                />
-              </div>
-              <div className="flex flex-col gap-2">
-                <div className="flex justify-between">
-                  <span className="font-semibold">Australia</span>
-                  <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                      <path d="M13.3333 4.99996V4.33329C13.3333 3.39987 13.3333 2.93316 13.1517 2.57664C12.9919 2.26304 12.7369 2.00807 12.4233 1.84828C12.0668 1.66663 11.6001 1.66663 10.6667 1.66663H9.33333C8.39991 1.66663 7.9332 1.66663 7.57668 1.84828C7.26308 2.00807 7.00811 2.26304 6.84832 2.57664C6.66667 2.93316 6.66667 3.39987 6.66667 4.33329V4.99996M8.33333 9.58329V13.75M11.6667 9.58329V13.75M2.5 4.99996H17.5M15.8333 4.99996V14.3333C15.8333 15.7334 15.8333 16.4335 15.5608 16.9683C15.3212 17.4387 14.9387 17.8211 14.4683 18.0608C13.9335 18.3333 13.2335 18.3333 11.8333 18.3333H8.16667C6.76654 18.3333 6.06647 18.3333 5.53169 18.0608C5.06129 17.8211 4.67883 17.4387 4.43915 16.9683C4.16667 16.4335 4.16667 15.7334 4.16667 14.3333V4.99996" stroke="#717680" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
-                </div>
-                <span className="text-[#079455] font-semibold">98% tingkat kecocokan</span>
-              </div>
+              ))}
             </div>
           </div>
 
@@ -136,7 +62,7 @@ const Step4: React.FC = () => {
                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
                   <path d="M10.4998 4.16663V15.8333M4.6665 9.99996H16.3332" stroke="#414651" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-                                Tambah negara lainnya
+                Tambah negara lainnya
               </button>
               <div className="border-b border-gray-300 w-full mt-2 ml-2"></div>
             </div>
