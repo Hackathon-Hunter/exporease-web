@@ -45,7 +45,7 @@ const Join: React.FC = () => {
                         width={768}
                         height={432}
                         className="object-cover w-full h-auto max-w-md md:max-w-none block p-[16px] sm:p-0 md:hidden"
-                        src="/assets/illustrations/features-4-mobile.svg"
+                        src="/assets/illustrations/features-4-mobile.webp"
                         loading="lazy"
                     />
                     <Image
@@ -53,7 +53,7 @@ const Join: React.FC = () => {
                         width={768}
                         height={432}
                         className="object-cover w-full h-auto max-w-md md:max-w-none hidden md:block"
-                        src="/assets/illustrations/features-4.svg"
+                        src="/assets/illustrations/features-4.webp"
                         loading="lazy"
                     />
                 </div>

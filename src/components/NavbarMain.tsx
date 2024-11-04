@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
+
 import Image from 'next/image';
+import { useRouter } from "next/navigation";
 
 const NavbarMain: React.FC = () => {
+    const router = useRouter();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
     };
+
+    const toSetup = () => {
+        router.push("/setup")
+    }
 
     return (
         <div className="flex justify-between items-center p-6 md:p-8 lg:px-20">
@@ -52,7 +59,7 @@ const NavbarMain: React.FC = () => {
 
             <div className="hidden md:flex gap-4 items-center">
                 <span className="text-sm lg:text-base text-[#475467] font-semibold cursor-pointer">Masuk</span>
-                <button className="btn-primary">Daftar</button>
+                <button className="btn-primary" onClick={toSetup}>Daftar</button>
             </div>
 
             {isMobileMenuOpen && (
@@ -63,7 +70,7 @@ const NavbarMain: React.FC = () => {
                         <span className="text-base text-[#475467] font-semibold cursor-pointer">Testimonials</span>
                         <hr className="border-gray-200" />
                         <span className="text-base text-[#475467] font-semibold cursor-pointer">Masuk</span>
-                        <button className="btn-primary">Daftar</button>
+                        <button className="btn-primary" onClick={toSetup}>Daftar</button>
                     </div>
                 </div>
             )}

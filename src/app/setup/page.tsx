@@ -129,14 +129,15 @@ const Setup: React.FC = () => {
       return (
         <div className="flex flex-col gap-3 justify-center items-center h-screen px-4 md:px-0">
           <div className="flex flex-col gap-3 w-full max-w-md md:w-[512px] justify-center items-center">
-            <Image
-              alt="Exporease"
-              width={56}
-              height={56}
-              className="object-cover w-[56px] h-auto"
-              src="/assets/icons/loading.png"
-              loading="lazy"
-            />
+            <svg xmlns="http://www.w3.org/2000/svg" width="94" height="94" viewBox="0 0 94 94" fill="none">
+              <path d="M17.9375 85.75V66.375M17.9375 27.625V8.25M8.25 17.9375H27.625M8.25 76.0625H27.625M50.875 12.125L44.1551 29.5968C43.0623 32.4381 42.5159 33.8587 41.6662 35.0537C40.9131 36.1128 39.9878 37.0381 38.9287 37.7912C37.7337 38.6409 36.3131 39.1873 33.4718 40.2801L16 47L33.4718 53.7199C36.3131 54.8127 37.7337 55.3591 38.9287 56.2088C39.9878 56.9619 40.9131 57.8872 41.6662 58.9463C42.5159 60.1413 43.0623 61.5619 44.1551 64.4032L50.875 81.875L57.5949 64.4032C58.6877 61.5619 59.2341 60.1413 60.0838 58.9463C60.8369 57.8872 61.7622 56.9619 62.8213 56.2088C64.0163 55.3591 65.4369 54.8127 68.2782 53.7199L85.75 47L68.2782 40.2801C65.4369 39.1873 64.0163 38.6409 62.8213 37.7912C61.7622 37.0381 60.8369 36.1128 60.0838 35.0537C59.2341 33.8587 58.6877 32.4381 57.5949 29.5968L50.875 12.125Z" stroke="url(#paint0_linear_71_6371)" stroke-width="7.75" stroke-linecap="round" stroke-linejoin="round" />
+              <defs>
+                <linearGradient id="paint0_linear_71_6371" x1="8.25" y1="8.25" x2="85.75" y2="85.75" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#F0FF00" />
+                  <stop offset="1" stop-color="#58CFFB" />
+                </linearGradient>
+              </defs>
+            </svg>
             <span className="text-lg md:text-2xl font-bold text-center">
               Kami sedang menganalisis usaha anda dengan bantuan AI...
             </span>
@@ -198,11 +199,10 @@ const Setup: React.FC = () => {
               <div
                 key={index}
                 className={`flex items-center justify-center w-3 h-3 mx-1 rounded-full cursor-pointer 
-                            ${
-              currentStep === index
-                ? "bg-[#079455] text-white"
-                : "bg-gray-200 text-gray-700"
-              }`}
+                            ${currentStep === index
+                    ? "bg-[#079455] text-white"
+                    : "bg-gray-200 text-gray-700"
+                  }`}
               />
             ))}
           </div>
